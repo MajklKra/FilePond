@@ -1,28 +1,30 @@
-.filepond--file {
+.filepond--file
+{
     position: relative;
     /* background-color: white; */
-}
 
+    color: #008080;
+}
 
 .filepond--file-info
 {
     position: relative;
     z-index: 12;
 
-    color: red;
+    color: rgba(127,127,127,1);
 }
 
 .filepond--file-info-main
 {
-    /* display: flex;
+    /* display: flex; */
     align-items: center;
-    gap: 8px; */
+    gap: 8px;
 
     padding-left: 40px;
 
     /* background-color: orange; */
 
-    color: blue;
+    color: #008080;
 
 }
 
@@ -36,14 +38,13 @@
 
     /* background-color: yellowgreen; */
 
-    color: green;
+    color: rgba(127,127,127,1);
 }
-
-
 
 .filepond--file,
 .filepond--file-info,
-.filepond--file-info-main {
+.filepond--file-info-main
+{
     overflow: visible;
 }
 
@@ -58,38 +59,95 @@
 }
 
 
-/* Pokusy */
+/* Pokusy 30.3.2026 */
 
 
-/* .filepond--panel.filepond--item-panel
+.filepond--item-panel
 {
-
-} */
-
-
-/* .filepond--panel-top,
-.filepond--panel-center,
-.filepond--panel-bottom {
-    border: none !important;
-    border-radius: 0 !important;
-} */
-
-/*
-.filepond--panel-top
-{
-    background-color: transparent;
-} */
-
-/* .filepond--panel-bottom {
-    background-color: transparent;
-} */
-
-
-.filepond--item-panel {
     background-color: white !important;
 }
 
-.filepond--item[data-filepond-item-state*="invalid"] .filepond--item-panel {
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--item-panel
+{
     background-color: #d9534f !important;
 }
 
+.filepond--item[data-filepond-item-state="processing-complete"] .filepond--item-panel
+{
+    background-color: rgba(54,151,99,1) !important; /* zelená */
+}
+
+
+/* .filepond--item[data-filepond-item-state="processing-complete"] .filepond--file
+{
+    color: white !important;
+} */
+
+
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file-info-main,
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file-info-sub,
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file-status-main,
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file-status-sub,
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file
+{
+    color: white !important;
+}
+
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file-info-sub,
+.filepond--item[data-filepond-item-state*="processing-complete"] .filepond--file-status-sub {
+    opacity: 1 !important;
+}
+
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--file,
+.filepond--item[data-filepond-item-state*="error"] .filepond--file,
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--file-info-main,
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--file-info-sub,
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--file-status-main,
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--file-status-sub,
+.filepond--item[data-filepond-item-state*="error"] .filepond--file-status-main,
+.filepond--item[data-filepond-item-state*="error"] .filepond--file-status-sub {
+    color: white !important;
+}
+
+
+.filepond--file-action-button {
+    cursor: pointer;
+}
+
+/* the text color of the drop label*/
+.filepond--drop-label
+{
+    color: #555;
+}
+
+/* the background color of the filepond drop area */
+.filepond--panel-root
+{
+    background-color: #eee;
+}
+
+/* the border radius of the drop area */
+.filepond--panel-root {
+    border-radius: 0.5em;
+}
+
+/* the background color of the black action buttons */
+.filepond--file-action-button
+{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* the color of the focus ring */
+.filepond--file-action-button:hover,
+.filepond--file-action-button:focus
+{
+    box-shadow: 0 0 0 0.125em rgba(25,113,181,1);
+}
+
+
+/* bordered drop area */
+/* .filepond--panel-root
+{
+    background-color: transparent;
+    border: 2px solid #2c3340;
+} */

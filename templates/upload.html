@@ -91,53 +91,103 @@
             }
         });
 
-        pond.on('addfile', (error, fileItem) => {
+        // pond.on('addfile', (error, fileItem) => {
+        //     if (error) return;
+
+        //     setTimeout(() => {
+
+        //         const type = fileItem.file?.type || '';
+        //         const name = (fileItem.file?.name || '').toLowerCase();
+
+        //         let iconSrc = '/static/icons/file.png';
+
+        //         if (type === 'application/pdf' || name.endsWith('.pdf')) {
+        //             iconSrc = '/static/icons/pdf.png';
+        //         } else if (type.startsWith('image/')) {
+        //             iconSrc = '/static/icons/image.png';
+        //         } else if (type.includes('word') || name.endsWith('.doc') || name.endsWith('.docx')) {
+        //             iconSrc = '/static/icons/doc.png';
+        //         } else if (type.includes('sheet') || name.endsWith('.xls') || name.endsWith('.xlsx')) {
+        //             iconSrc = '/static/icons/xls.png';
+        //         }
+
+        //         const items = document.querySelectorAll('.filepond--file');
+
+        //         // místo posledního vem první
+        //         const row = items[0];
+        //         if (!row) return;
+
+        //         const info = row.querySelector('.filepond--file-info-main');
+        //         if (!info) return;
+
+        //         if (row.querySelector('.my-file-icon')) return;
+
+        //         const img = document.createElement('img');
+        //         img.src = iconSrc;
+        //         img.className = 'my-file-icon';
+        //         // img.style.width = '18px';
+        //         // img.style.height = '18px';
+
+        //         // img.style.width = '32px';
+        //         // img.style.height = '32px';
+
+
+        //         // img.style.marginRight = '8px';
+        //         // img.style.verticalAlign = 'middle';
+
+        //         info.prepend(img);
+
+        //     }, 50);
+        // });
+
+        pond.on('addfile', (error, fileItem) =>
+        {
             if (error) return;
 
             setTimeout(() => {
+                const rows = document.querySelectorAll('.filepond--file');
 
-                const type = fileItem.file?.type || '';
-                const name = (fileItem.file?.name || '').toLowerCase();
+                rows.forEach((row) => {
+                    const info = row.querySelector('.filepond--file-info-main');
+                    if (!info) return;
 
-                let iconSrc = '/static/icons/file.png';
+                    // už má ikonu -> nic nedělej
+                    if (info.querySelector('.my-file-icon')) return;
 
-                if (type === 'application/pdf' || name.endsWith('.pdf')) {
-                    iconSrc = '/static/icons/pdf.png';
-                } else if (type.startsWith('image/')) {
-                    iconSrc = '/static/icons/image.png';
-                } else if (type.includes('word') || name.endsWith('.doc') || name.endsWith('.docx')) {
-                    iconSrc = '/static/icons/doc.png';
-                } else if (type.includes('sheet') || name.endsWith('.xls') || name.endsWith('.xlsx')) {
-                    iconSrc = '/static/icons/xls.png';
-                }
+                    const text = (info.textContent || '').toLowerCase().trim();
 
-                const items = document.querySelectorAll('.filepond--file');
+                    let iconSrc = '/static/icons/file.png';
 
-                // místo posledního vem první
-                const row = items[0];
-                if (!row) return;
+                    if (text.endsWith('.pdf') || text.includes('.pdf ')) {
+                        iconSrc = '/static/icons/pdf.png';
+                    } else if (
+                        text.endsWith('.png') ||
+                        text.endsWith('.jpg') ||
+                        text.endsWith('.jpeg') ||
+                        text.endsWith('.gif') ||
+                        text.endsWith('.webp')
+                    ) {
+                        iconSrc = '/static/icons/image.png';
+                    } else if (
+                        text.endsWith('.doc') ||
+                        text.endsWith('.docx')
+                    ) {
+                        iconSrc = '/static/icons/doc.png';
+                    } else if (
+                        text.endsWith('.xls') ||
+                        text.endsWith('.xlsx')
+                    ) {
+                        iconSrc = '/static/icons/xls.png';
+                    }
 
-                const info = row.querySelector('.filepond--file-info-main');
-                if (!info) return;
+                    const img = document.createElement('img');
+                    img.src = iconSrc;
+                    img.className = 'my-file-icon';
+                    img.alt = '';
 
-                if (row.querySelector('.my-file-icon')) return;
-
-                const img = document.createElement('img');
-                img.src = iconSrc;
-                img.className = 'my-file-icon';
-                // img.style.width = '18px';
-                // img.style.height = '18px';
-
-                // img.style.width = '32px';
-                // img.style.height = '32px';
-
-
-                // img.style.marginRight = '8px';
-                // img.style.verticalAlign = 'middle';
-
-                info.prepend(img);
-
-            }, 50);
+                    info.prepend(img);
+                });
+            }, 100);
         });
 
         document.getElementById('saveBtn').addEventListener('click', async () => {
