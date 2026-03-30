@@ -52,6 +52,7 @@
                 'text/plain'
             ],
             labelFileTypeNotAllowed: 'Nepovolený typ souboru',
+            fileValidateTypeLabelExpectedTypes: '',
             server: {
                 process: {
                     url: '/upload',
@@ -91,63 +92,17 @@
             }
         });
 
-        // pond.on('addfile', (error, fileItem) => {
-        //     if (error) return;
-
-        //     setTimeout(() => {
-
-        //         const type = fileItem.file?.type || '';
-        //         const name = (fileItem.file?.name || '').toLowerCase();
-
-        //         let iconSrc = '/static/icons/file.png';
-
-        //         if (type === 'application/pdf' || name.endsWith('.pdf')) {
-        //             iconSrc = '/static/icons/pdf.png';
-        //         } else if (type.startsWith('image/')) {
-        //             iconSrc = '/static/icons/image.png';
-        //         } else if (type.includes('word') || name.endsWith('.doc') || name.endsWith('.docx')) {
-        //             iconSrc = '/static/icons/doc.png';
-        //         } else if (type.includes('sheet') || name.endsWith('.xls') || name.endsWith('.xlsx')) {
-        //             iconSrc = '/static/icons/xls.png';
-        //         }
-
-        //         const items = document.querySelectorAll('.filepond--file');
-
-        //         // místo posledního vem první
-        //         const row = items[0];
-        //         if (!row) return;
-
-        //         const info = row.querySelector('.filepond--file-info-main');
-        //         if (!info) return;
-
-        //         if (row.querySelector('.my-file-icon')) return;
-
-        //         const img = document.createElement('img');
-        //         img.src = iconSrc;
-        //         img.className = 'my-file-icon';
-        //         // img.style.width = '18px';
-        //         // img.style.height = '18px';
-
-        //         // img.style.width = '32px';
-        //         // img.style.height = '32px';
-
-
-        //         // img.style.marginRight = '8px';
-        //         // img.style.verticalAlign = 'middle';
-
-        //         info.prepend(img);
-
-        //     }, 50);
-        // });
 
         pond.on('addfile', (error, fileItem) =>
         {
             if (error) return;
 
-            setTimeout(() => {
+            setTimeout(() =>
+            {
                 const rows = document.querySelectorAll('.filepond--file');
 
-                rows.forEach((row) => {
+                rows.forEach((row) =>
+                {
                     const info = row.querySelector('.filepond--file-info-main');
                     if (!info) return;
 

@@ -1,5 +1,5 @@
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 ### BYLY PROVEDENY TYTO ZMĚNY ###
 
-# Vložení obrázků od jednotlivých pložek
+# Oprava nepovolený typ souboru
