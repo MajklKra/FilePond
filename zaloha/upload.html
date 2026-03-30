@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>FilePond + Flask</title>
+    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+
+    <!-- Moje vlastní kreativita -->
+
+    <link href="static/css/style.css" rel="stylesheet">
+
+
+    <!-- <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet"> -->
+
+    <!-- <link href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.css" rel="stylesheet"> -->
+
+</head>
+<body>
+    <h1>Upload na lokální disk přes Flask</h1>
+
+    <input type="file" class="filepond" name="file" multiple>
+    <div id="uploadError" style="color:red; margin:10px 0;"></div>
+    <button type="button" id="saveBtn">Uložit</button>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <!-- <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script> -->
+
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.js"></script> -->
+
+    <script>
+
+        // FilePond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.registerPlugin(FilePondPluginFileValidateSize);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);;
+        // FilePond.registerPlugin(FilePondPluginFilePoster);
+
+        // const pond = FilePond.create(document.querySelector('.filepond'));
+
+        // const pond = FilePond.create(document.querySelector('.filepond'),{
+        //     maxFileSize: '5MB',
+        //     labelMaxFileSizeExceeded: 'Soubor je příliš velký',
+        //     labelMaxFileSize: 'Maximální velikost je {filesize}'
+        // });
+
+        // FilePond.setOptions({
+        //     server: {
+        //         process: '/upload',
+        //         revert: '/revert',
+        //     },
+        //     labelIdle: 'Přetáhni soubor nebo klikni',
+        //     instantUpload: false,
+        //     allowMultiple: true
+        // });
+
+        const pond = FilePond.create(document.querySelector('.filepond'), {
+            maxFileSize: '5MB',
+            labelMaxFileSizeExceeded: 'Soubor je příliš velký',
+            labelMaxFileSize: 'Maximální velikost je {filesize}',
+            acceptedFileTypes: [ 'image/png', 'image/jpeg', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/plain'],
+            labelFileTypeNotAllowed: 'Nepovolený typ souboru',
+            // filePosterMaxHeight: 46,
+
+            server: {
+                process: {
+                    url: '/upload',
+                    onerror: (response) => {
+                        console.log('SERVER ERROR:', response);
+                        return response;
+                    }
+                },
+                revert: '/revert'
+            },
+
+            labelIdle: 'Přetáhni soubor nebo klikni',
+            instantUpload: false,
+            allowMultiple: true,
+
+            beforeAddFile: (item) => {
+                const newFile = item.file;
+
+                const isDuplicate = pond.getFiles().some((fileItem) => {
+                    // přeskoč aktuálně přidávaný item
+                    if (fileItem.id === item.id)
+                    {
+                        return false;
+                    }
+
+                    const existingFile = fileItem.file;
+
+                    if (!existingFile || !newFile)
+                    {
+                        return false;
+                    }
+
+                    return (
+                        existingFile.name === newFile.name &&
+                        existingFile.size === newFile.size &&
+                        existingFile.lastModified === newFile.lastModified
+                    );
+                });
+
+                if (isDuplicate)
+                {
+                    uploadError.textContent = `Soubor "${newFile.name}" už byl přidán.`;
+                    return false;
+                }
+
+                return true;
+            },
+
+        });
+
+        // function getPosterByType(type)
+        // {
+        //     if (type === 'application/pdf') return '/static/icons/pdf.png';
+        //     if (type.includes('word')) return '/static/icons/doc.png';
+        //     if (type.includes('sheet') || type.includes('excel')) return '/static/icons/xls.png';
+        //     if (type.startsWith('image/')) return '/static/icons/image.png';
+        //     return '/static/icons/file.png';
+        // }
+
+        // pond.on('addfile', (error, item) => {
+        //     if (error) return;
+        //     const poster = getPosterByType(item.fileType || item.file.type || '');
+        //     item.setMetadata('poster', poster);
+        // });
+
+        pond.on('addfile', (error, fileItem) => {
+            if (error) return;
+
+            const root = fileItem.element;
+
+            // místo celého řádku cílíme na text (to je stabilní)
+            const info = root.querySelector('.filepond--file-info-main');
+            if (!info) return;
+
+            // smažeme starou ikonku (aby se neduplikovala)
+            const old = root.querySelector('.my-icon');
+            if (old) old.remove();
+
+            const img = document.createElement('img');
+            img.src = '/static/icons/pdf.png';
+            img.className = 'my-icon';
+            img.style.width = '18px';
+            img.style.marginRight = '8px';
+            img.style.verticalAlign = 'middle';
+
+            const type = fileItem.fileType || fileItem.file.type || '';
+
+            if (type === 'application/pdf') {
+                info.prepend(img);
+            }
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', async () => {
+
+            if (pond.getFiles().length === 0) {
+                alert('Nejsou vybrány žádné soubory');
+                return;
+            }
+
+            try
+            {
+                await pond.processFiles(); // ⬅️ počká na dokončení uploadu
+
+                setTimeout(() => {
+                    pond.removeFiles(); // vyčistí seznam
+                    alert('Soubory byly nahrány');
+                }, 1000);
+
+            } catch (err) {
+
+                setTimeout(() => {
+
+                    console.error(err);
+                    alert('Upload se nepodařil ' + err.error.body);
+
+                }, 1000);
+            }
+        });
+
+    </script>
+</body>
+</html>

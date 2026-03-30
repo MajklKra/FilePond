@@ -1,0 +1,95 @@
+.filepond--file {
+    position: relative;
+    /* background-color: white; */
+}
+
+
+.filepond--file-info
+{
+    position: relative;
+    z-index: 12;
+
+    color: red;
+}
+
+.filepond--file-info-main
+{
+    /* display: flex;
+    align-items: center;
+    gap: 8px; */
+
+    padding-left: 40px;
+
+    /* background-color: orange; */
+
+    color: blue;
+
+}
+
+.filepond--file-info-sub
+{
+    /* margin-left: 40px; /* odsazení pod text (kvůli ikoně) */
+
+    margin-left: 40px;
+    font-size: 12px;
+    opacity: 0.6;
+
+    /* background-color: yellowgreen; */
+
+    color: green;
+}
+
+
+
+.filepond--file,
+.filepond--file-info,
+.filepond--file-info-main {
+    overflow: visible;
+}
+
+.my-file-icon {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    z-index: 1;
+}
+
+
+/* Pokusy */
+
+
+/* .filepond--panel.filepond--item-panel
+{
+
+} */
+
+
+/* .filepond--panel-top,
+.filepond--panel-center,
+.filepond--panel-bottom {
+    border: none !important;
+    border-radius: 0 !important;
+} */
+
+/*
+.filepond--panel-top
+{
+    background-color: transparent;
+} */
+
+/* .filepond--panel-bottom {
+    background-color: transparent;
+} */
+
+
+.filepond--item-panel {
+    background-color: white !important;
+}
+
+.filepond--item[data-filepond-item-state*="invalid"] .filepond--item-panel {
+    background-color: #d9534f !important;
+}
+
