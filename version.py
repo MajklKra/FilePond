@@ -1,5 +1,5 @@
-__version__ = "1.1.2"
+__version__ = "1.1.4"
 
 ### BYLY PROVEDENY TYTO ZMĚNY ###
 
-# Oprava nepovolený typ souboru
+# Tvorba JS souboru.
