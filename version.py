@@ -1,5 +1,6 @@
-__version__ = "1.1.4"
+__version__ = "1.1.5"
 
 ### BYLY PROVEDENY TYTO ZMĚNY ###
 
-# Tvorba JS souboru.
+# Vyzazání a vložení hlášek uploadError.
+

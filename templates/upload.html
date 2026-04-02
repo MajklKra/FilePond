@@ -22,29 +22,33 @@
 
         <div id="containerHeader">
 
-            <svg id="upload-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- <svg id="upload-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
                         <path fill="currentcolor" fill-rule="evenodd" d="M9 12a1 1 0 102 0V4.26l3.827 3.48a1 1 0 001.346-1.48l-5.5-5a1 1 0 00-1.346 0l-5.5 5a1 1 0 101.346 1.48L9 4.26V12zm-5.895-.796A1 1 0 001.5 12v3.867a2.018 2.018 0 002.227 2.002c1.424-.147 3.96-.369 6.273-.369 2.386 0 5.248.236 6.795.383a2.013 2.013 0 002.205-2V12a1 1 0 10-2 0v3.884l-13.895-4.68zm0 0L2.5 11l.605.204zm0 0l13.892 4.683a.019.019 0 01-.007.005h-.006c-1.558-.148-4.499-.392-6.984-.392-2.416 0-5.034.23-6.478.38h-.009a.026.026 0 01-.013-.011V12a.998.998 0 00-.394-.796z"/>
-            </svg>
+            </svg> -->
 
             <div id="upload-textC">
-                <span id="upload-text">Nahrej soubory</span>
+                <span id="upload-text">Nahrávání souborů</span>
             </div>
 
         </div>
 
-        <div id="filepondInstruction" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div id="filepondInstruction">
 
-            <p style="color: aquamarine;"> Vložte soubory do pole níže. Soubory mužete vyhledat kliknutím anebo přetáhnout myší. </p>
-            <p style="color: aquamarine;"> Soubory mužete vyhledat kliknutím anebo přetáhnout myší. </p>
+            <p id="instruction1"> Soubory vložte pomocí modrého pole níže. Soubory můžete vložit kliknutím nebo přetažením. </p>
+            <!-- <p id="instruction2"> Soubory můžete vložit kliknutím nebo přetažením. </p> -->
 
         </div>
 
         <div id="filepondC">
-            <input type="file" class="filepond" name="file" multiple>
+            <input type="file" class="filepond" name="file" multiple style="display: none;">
         </div>
 
-        <div id="uploadError" style="color:red; margin:10px 0;"></div>
-        <button type="button" id="saveBtn">Uložit</button>
+        <div id="uploadError"></div>
+
+        <div id="buttonC">
+            <button type="button" class="btn" id="saveBtn">Nahrát soubory</button>
+        </div>
+
     </div>
 
 
@@ -67,8 +71,11 @@
 
         const uploadError = document.getElementById('uploadError');
 
+        const uploadErrorText = document.getElementById('uploadErrorText');
+
         const pond = FilePond.create(document.querySelector('.filepond'),
         {
+
             maxFiles: 5,
             labelMaxFilesExceeded: 'Můžeš nahrát maximálně 5 souborů',
             labelMaxFiles: 'Maximální počet souborů je {maxFiles}',
@@ -80,7 +87,9 @@
             {
                 if (!error) return;
 
-                if (error.code === 0 || String(error.body || '').includes('maximum allowed files')) {
+                if (error.code === 0 || String(error.body || '').includes('maximum allowed files'))
+                {
+                    uploadError.style.display = 'flex';
                     uploadError.textContent = 'Můžeš nahrát maximálně 5 souborů';
                 }
             },
@@ -106,21 +115,21 @@
                 },
                 revert: '/revert'
             },
-            labelIdle: 'Přetáhni soubor nebo klikni',
+            // labelIdle: 'Přetáhni soubor nebo klikni',
 
-            // labelIdle: `
-            //     <div class="my-drop-label">
+            labelIdle: `
+                <div class="my-drop-label">
 
-            //         <svg id="upload-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
-            //             <path fill="currentcolor" fill-rule="evenodd" d="M9 12a1 1 0 102 0V4.26l3.827 3.48a1 1 0 001.346-1.48l-5.5-5a1 1 0 00-1.346 0l-5.5 5a1 1 0 101.346 1.48L9 4.26V12zm-5.895-.796A1 1 0 001.5 12v3.867a2.018 2.018 0 002.227 2.002c1.424-.147 3.96-.369 6.273-.369 2.386 0 5.248.236 6.795.383a2.013 2.013 0 002.205-2V12a1 1 0 10-2 0v3.884l-13.895-4.68zm0 0L2.5 11l.605.204zm0 0l13.892 4.683a.019.019 0 01-.007.005h-.006c-1.558-.148-4.499-.392-6.984-.392-2.416 0-5.034.23-6.478.38h-.009a.026.026 0 01-.013-.011V12a.998.998 0 00-.394-.796z"/>
-            //         </svg>
+                    <svg id="upload-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path fill="currentcolor" fill-rule="evenodd" d="M9 12a1 1 0 102 0V4.26l3.827 3.48a1 1 0 001.346-1.48l-5.5-5a1 1 0 00-1.346 0l-5.5 5a1 1 0 101.346 1.48L9 4.26V12zm-5.895-.796A1 1 0 001.5 12v3.867a2.018 2.018 0 002.227 2.002c1.424-.147 3.96-.369 6.273-.369 2.386 0 5.248.236 6.795.383a2.013 2.013 0 002.205-2V12a1 1 0 10-2 0v3.884l-13.895-4.68zm0 0L2.5 11l.605.204zm0 0l13.892 4.683a.019.019 0 01-.007.005h-.006c-1.558-.148-4.499-.392-6.984-.392-2.416 0-5.034.23-6.478.38h-.009a.026.026 0 01-.013-.011V12a.998.998 0 00-.394-.796z"/>
+                    </svg>
 
-            //         <div id="drop-label-text-container">
-            //             <span id="drop-label-text">Přetáhni soubor nebo klikni</span>
-            //         </div>
+                    <div id="drop-label-text-container">
+                        <span id="drop-label-text">Přetáhni soubor nebo klikni</span>
+                    </div>
 
-            //     </div>
-            // `,
+                </div>
+            `,
 
             instantUpload: false,
             allowMultiple: true,
@@ -141,7 +150,9 @@
                     );
                 });
 
-                if (isDuplicate) {
+                if (isDuplicate)
+                {
+                    uploadError.style.display = 'flex';
                     uploadError.textContent = `Soubor "${newFile.name}" už byl přidán.`;
                     return false;
                 }
@@ -153,6 +164,10 @@
             {
                 if (error) return;
 
+
+                uploadError.textContent = "";
+                uploadError.style.display = "none";
+
                 const files = pond.getFiles();
 
                 const totalSize = files.reduce((sum, f) => sum + f.fileSize, 0);
@@ -162,6 +177,7 @@
                 if (totalSize > maxTotalSize) {
                     pond.removeFile(fileItem.id);
 
+                    uploadError.style.display = 'flex';
                     uploadError.textContent = "Celková velikost souborů může být max 20 MB";
                 } else {
                     uploadError.textContent = "";
@@ -221,6 +237,13 @@
                 });
             }, 100);
 
+        });
+
+
+        pond.on('removefile', (error, fileItem) =>
+        {
+            uploadError.textContent = '';
+            uploadError.style.display = 'none';
         });
 
         </script>

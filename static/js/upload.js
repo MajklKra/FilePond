@@ -10,11 +10,17 @@
 
         try
         {
+
+            const uploadError = document.getElementById('uploadError');
+
             await pond.processFiles(); // ⬅️ počká na dokončení uploadu
 
             setTimeout(() => {
                 pond.removeFiles(); // vyčistí seznam
                 alert('Soubory byly nahrány');
+                uploadError.textContent = "";
+                uploadError.style.display = "none";
+
             }, 1000);
 
         } catch (err) {
@@ -37,3 +43,4 @@
     document.addEventListener("drop", function (e) {
         e.preventDefault();
     });
+

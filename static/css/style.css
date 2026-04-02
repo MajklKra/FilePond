@@ -1,7 +1,7 @@
 body
 {
     margin: 0;
-    padding: 0;
+    /* padding: 0; */
     box-sizing: border-box;
     height: 100dvh;
     width: 100%;
@@ -9,9 +9,15 @@ body
     background-color: darksalmon;
 
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
+
+    padding: 3rem;
+
+    /* overflow: hidden; */
+
+    overflow-y: auto;
 }
 
 
@@ -127,7 +133,8 @@ body
 }
 
 
-.filepond--file-action-button {
+.filepond--file-action-button
+{
     cursor: pointer;
 }
 
@@ -135,20 +142,22 @@ body
 .filepond--drop-label
 {
     color: #555;
+
+    height: 50px !important; /* => rem */
+
+    border-radius: 0.625em;
 }
 
 /* the background color of the filepond drop area */
 .filepond--panel-root
 {
-    background-color: #eee;
+    /* background-color: #eee; */
 
-    /* min-height: 15rem; */
-}
+    background-color: #87CEEB;
 
-/* the border radius of the drop area */
-.filepond--panel-root {
     border-radius: 0.5em;
 }
+
 
 /* the background color of the black action buttons */
 .filepond--file-action-button
@@ -178,16 +187,22 @@ body
     /* background-color: yellow; */
 }
 
-/* #upload-text
+#upload-text
 {
-    /* background-color: hotpink;
+    /* background-color: hotpink; */
     height: 100% !important;
 
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 
     color: white;
-} */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 #upload-textC
 {
@@ -198,9 +213,6 @@ body
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    color: white;
-    font-size: 24px;
 }
 
 .my-drop-label
@@ -214,14 +226,88 @@ body
     height: 100%;
 
     cursor: pointer;
+
+    /* display: none; */
 }
 
 #containerHeader
 {
     width: 100%;
-    height: 15%;
+    height: 10%;
 
     background-color: #005A9C;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+
+    border-top-left-radius: 0.625em;
+    border-top-right-radius: 0.625em;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-weight: bold;
+
+    box-sizing: border-box;
+
+    padding: 0.625rem 1.25rem;
+
+}
+
+#containerWrapper
+{
+
+    width: 70%;
+    height: auto;
+
+    /* min-height: 70%; */
+    /* min-height: 70vh;   /* nebo třeba 500px */
+    /* max-height: 90%; */
+
+
+    min-height: 700px; /* => rem */
+
+    max-height: none;
+
+    /* background-color: orange; */
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 0.625em;
+}
+
+
+#filepondC
+{
+    width: 50%;
+    /* height: auto; */
+
+    min-height: 4.6875rem !important; /* => rem */
+
+    /* background-color: yellowgreen !important; */
+}
+
+#filepondInstruction
+{
+    width: 50%;
+    /* height: 25%;
+    min-height: 25%; */
+
+    height: 6.25rem !important;  /* => rem*/
+
+    /* background-color: hotpink; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 0.625rem;
 
     display: flex;
     flex-direction: row;
@@ -229,39 +315,183 @@ body
     align-items: center;
 }
 
-#containerWrapper
+#instruction1
+{
+    /* background-color: yellow; */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #008080;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    text-align: justify;
+
+    line-height: 1.5rem;
+
+
+}
+
+#instruction2
 {
 
-    width: 40%;
-    height: auto;
-    min-height: 35%;
-    max-height: 90%;
-    background-color: orange;
+    /*background-color: yellow; */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #40E0D0;
+    font-size: 1rem;
+}
+
+#drop-label-text
+{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+
+#uploadError
+{
+    /* background-color: lawngreen; */
+
+    background-color: rgba(123, 24, 24, 0.7);
+    width: 50%;
+    /* height: 5%;
+    min-height: 5%; */
+
+    min-height: 2.5rem !important;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    color: white;
+    font-size: 1rem !important;
+    font-weight: bold;
 
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
+
+    padding-left: 0.625rem;
+
+    border-radius: 0.625rem;
+
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+
+    display: none;
 }
 
-
-#filepondC
+#buttonC
 {
     width: 100%;
-    height: auto;
+    /* height: 15%; */
+    /* min-height: 15%; */
 
-    background-color: yellowgreen !important;
-}
+    min-height: 6.25rem;
 
-#filepondInstruction
-{
-    width: 100%;
-    height: 25%;
-
-    background-color: hotpink;
+    /* background-color: darkgreen; */
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom-left-radius: 0.625em;
+    border-bottom-right-radius: 0.625em;
+}
+
+#saveBtn
+{
+    width: 300px;
+    height: 40px;
+
+    background-color: #4682B4;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
+
+
+.btn
+{
+  /* font-family: Montserrat, sans-serif;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 10px; */
+  border: none;
+
+  color: white;
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.btn:hover
+{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  filter: brightness(1.03);
+}
+
+.btn:active
+{
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  filter: brightness(0.98);
+}
+
+
+/* Pokusy 1.4.2026 */
+
+/* #containerHeader {
+    width: 100% !important;
+    padding: 0.625rem 1.25rem !important;
+} */
+
+/* #filepondInstruction,
+#uploadError,
+#buttonC {
+    height: auto !important;
+    min-height: unset !important;
+} */
+
+
+/* Pokusy 2.4.2026 */
+
+
+.filepond--root .filepond--drop-label
+{
+    min-height: 3.125rem !important; /* => rem */
+
+    /* display: none; */
+}
+
+.filepond--credits
+{
+    display: none;
+}
+
+
+.filepond--hopper
+{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+    border-radius: 0.625em;
+    background-color: #87CEEB;
+}
+
