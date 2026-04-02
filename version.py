@@ -1,6 +1,6 @@
-__version__ = "1.1.5"
+__version__ = "1.1.7"
 
 ### BYLY PROVEDENY TYTO ZMĚNY ###
 
-# Vyzazání a vložení hlášek uploadError.
+# Formulář pro kompletaci vytvořen.
 
