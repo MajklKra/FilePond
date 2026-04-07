@@ -2,21 +2,37 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>FilePond + Flask</title>
-    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+    <title>Uložiště souborů</title>
+    <!-- <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet"> -->
+
+    <link href="static/css/filepond.min.css" rel="stylesheet">
 
     <!-- Moje vlastní kreativita -->
 
     <link href="static/css/style.css" rel="stylesheet">
 
 
+
     <!-- <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet"> -->
 
     <!-- <link href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.css" rel="stylesheet"> -->
 
+
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+
+
 </head>
 <body>
     <!-- <h1>Upload na lokální disk přes Flask</h1> -->
+
+    <section id="top-bar">
+
+            <span id="codacoMark"> codaco </span>
+
+    </section>
 
     <div id="containerWrapper">
 
@@ -34,14 +50,14 @@
 
         </div>
 
-        <div id="filepondC">
+        <div id="filepondC" title="Zde vložte maximálně 5 souborů k nahrání o velikosti jednoho souboru MAX. 5MB, celkové velikosti všech souborů MAX. 10 MB.">
             <input type="file" class="filepond" name="file" multiple style="display: none;">
         </div>
 
         <div id="uploadError"></div>
 
         <div id="buttonC">
-            <button type="button" class="btn" id="saveBtn">Nahrát soubory</button>
+            <button type="button" class="btn" id="saveBtn" title="Nahrání souborů">Nahrát soubory</button>
         </div>
 
         <div id="coverLayer"></div>
@@ -49,14 +65,13 @@
         <div id="completionC">
 
             <div id="firstRowWrapper">
-                <div id="CCcolumn1" >
 
+                <div id="CCcolumn1" >
 
                     <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                     <svg id="tickIcon"
                         fill="currentcolor"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.011,9.011,0,0,1,12,21ZM17.737,8.824a1,1,0,0,1-.061,1.413l-6,5.5a1,1,0,0,1-1.383-.03l-3-3a1,1,0,0,1,1.415-1.414l2.323,2.323,5.294-4.853A1,1,0,0,1,17.737,8.824Z"/>
                     </svg>
-
 
                 </div>
 
@@ -78,12 +93,7 @@
                         Vaše soubory byly úspěšně nahrány. Tlačítkem "OK" zavřete toto informační okno.
                     </div>
 
-                    <!-- <div id="c2-row3">
-                        <button id="acknoledgeBtn">OK</button>
-                    </div> -->
-
                 </div>
-
 
             </div>
             <div id="c2-row3">
@@ -93,28 +103,25 @@
 
         </div>
 
-
-        <div id="errorC"> </div>
+        <div id="missingFilesC"> </div>
 
     </div>
 
-
-
-
-
-
-
-
-
-
     <!-- JS block -->
 
-    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <!-- <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script> -->
+
     <!-- <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script> -->
 
-    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+    <script src="static/js/filepond.min.js"></script>
 
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+    <!-- <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script> -->
+
+    <script src="static/js/filepond-plugin-file-validate-size.js"></script>
+
+    <!-- <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script> -->
+
+    <script src="static/js/filepond-plugin-file-validate-type.min.js"></script>
 
     <!-- <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.js"></script> -->
 
@@ -221,7 +228,6 @@
             {
                 if (error) return;
 
-
                 uploadError.textContent = "";
                 uploadError.style.display = "none";
 
@@ -235,7 +241,7 @@
                     pond.removeFile(fileItem.id);
 
                     uploadError.style.display = 'flex';
-                    uploadError.textContent = "Celková velikost souborů může být max 20 MB";
+                    uploadError.textContent = "Celková velikost souborů může být max 10 MB";
                 } else {
                     uploadError.textContent = "";
                 }
@@ -297,11 +303,11 @@
         });
 
 
-        pond.on('removefile', (error, fileItem) =>
-        {
-            uploadError.textContent = '';
-            uploadError.style.display = 'none';
-        });
+        // pond.on('removefile', (error, fileItem) =>
+        // {
+        //     uploadError.textContent = '';
+        //     uploadError.style.display = 'none';
+        // });
 
         </script>
 

@@ -1,10 +1,20 @@
 
     console.log('𝖘𝖍𝖚𝖙 𝖚𝖕 𝖋𝖆𝖌𝖌𝖔𝖙😍 Upload script loaded');
 
-    document.getElementById('saveBtn').addEventListener('click', async () => {
+    document.getElementById('saveBtn').addEventListener('click', async () =>
+    {
 
-        if (pond.getFiles().length === 0) {
-            alert('Nejsou vybrány žádné soubory');
+
+        if (pond.getFiles().length === 0)
+        {
+            // alert('Nejsou vybrány žádné soubory');
+
+
+            const uploadError = document.getElementById('uploadError');
+
+            uploadError.style.display = "flex";
+            uploadError.textContent = "Nejsou vybrány žádné soubory";
+
             return;
         }
 
@@ -44,10 +54,10 @@
             e.preventDefault();
     });
 
-    document.addEventListener("drop", function (e) {
+    document.addEventListener("drop", function (e)
+    {
         e.preventDefault();
     });
-
 
 
     const crossBtn = document.getElementById("crossBtn");
@@ -65,9 +75,7 @@
     });
 
 
-
     /* Velikost okna */
-
 
     const width = window.innerWidth;
     const height = window.innerHeight;

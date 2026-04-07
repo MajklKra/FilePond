@@ -6,7 +6,9 @@ body
     height: 100dvh;
     width: 100%;
 
-    background-color: darksalmon;
+    /* background-color: darksalmon; */
+
+    background-color: rgba(247,247,247,1);
 
     display: flex;
     /* flex-direction: column; */
@@ -18,8 +20,8 @@ body
     /* overflow: hidden; */
 
     overflow-y: auto;
-}
 
+}
 
 .filepond--file
 {
@@ -146,6 +148,8 @@ body
     height: 50px !important; /* => rem */
 
     border-radius: 0.625em;
+
+    cursor: pointer;
 }
 
 /* the background color of the filepond drop area */
@@ -156,6 +160,8 @@ body
     background-color: #87CEEB;
 
     border-radius: 0.5em;
+
+    cursor: pointer;
 }
 
 
@@ -281,6 +287,8 @@ body
     border-radius: 0.625em;
 
     position: relative;
+
+    box-shadow: 0px 0px 2px #87CEEB;
 }
 
 
@@ -331,7 +339,6 @@ body
 
     line-height: 1.5rem;
 
-
 }
 
 #drop-label-text
@@ -364,13 +371,15 @@ body
     justify-content: start;
     align-items: center;
 
-    padding-left: 0.625rem;
+    padding-left: 1rem;
 
-    border-radius: 0.625rem;
+    border-radius: 5px;
 
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
 
     display: none;
+
+    box-sizing: border-box;
 }
 
 #buttonC
@@ -512,13 +521,15 @@ body
 
     display: none;
 
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.35);
+
 }
 
-#folderIcon
+/* #folderIcon
 {
     width: 50px;
     height: 50px;
-}
+} */
 
 #completionText
 {
@@ -736,4 +747,523 @@ body
     align-items: center;
 
     cursor: pointer;
+}
+
+/*  Dnešní experimenty 7.4.2026 */
+
+
+#codacoMark
+{
+    font-family: "Inter";
+
+    font-weight: 500; /* bold */
+    color: rgb(24, 37, 55);
+}
+
+#top-bar
+{
+
+    background-color: rgba(255,255,255,1);
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* mobil */
+@media  (max-width: 320px)
+{
+    body
+    {
+      display: none;
+    }
+}
+
+/* mobil na výšku */
+@media  (min-width: 321px) and (max-width: 359px)
+{
+    body
+    {
+        /* background-color: lightblue; */
+
+        display: flex;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center;
+
+    }
+
+    #containerWrapper
+    {
+        margin-top: 5%;
+        width: 99%;
+        border-radius: 5px !important;
+    }
+
+    #upload-text
+    {
+        font-size: 14px !important;
+    }
+
+
+    #instruction1
+    {
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+    }
+
+    #filepondC
+    {
+        width: 100%;
+    }
+
+    #filepondInstruction
+    {
+        width: 95%;
+    }
+
+    #saveBtn
+    {
+        font-size: 0.9rem !important;
+        width: 100% !important;
+    }
+
+    body
+    {
+        padding: 0;
+    }
+
+    #containerHeader
+    {
+        padding-left: 0.5rem;
+
+        border-top-left-radius: 5px !important;
+        border-top-right-radius: 5px !important;
+    }
+
+    #drop-label-text
+    {
+        font-size: 0.9rem;
+    }
+
+    #upload-icon
+    {
+        width: 25px;
+        height: 25px;
+    }
+
+    #completionC
+    {
+        width: 100%;
+        height: 400px;
+
+    }
+
+    #tickIcon
+    {
+        width:  50px !important;
+        height: 50px !important;
+    }
+
+    #CCcolumn1
+    {
+        width:  75px;
+        height: 100%;
+    }
+
+    #c2-row1
+    {
+
+        font-size: 20px;
+    }
+
+    #crossBtn
+    {
+        width: 40px;
+        height: 40px;
+    }
+
+    #uploadError
+    {
+        width: 100% !important;
+        font-size: 0.9rem !important;
+    }
+
+    #top-bar
+    {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+
+        padding: 0 2%;
+
+    }
+
+    #codacoMark
+    {
+        font-size: 1.2rem;
+    }
+
+    #c2-row1
+    {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #c2-row2
+    {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+}
+
+/* mobil na výšku */
+@media  (min-width: 360px) and (max-width: 575px)
+{
+   body
+   {
+     /* background-color: yellowgreen; */
+
+     display: flex;
+     flex-direction: column !important;
+     justify-content: flex-start !important;
+     align-items: center;
+
+     padding: 0;
+   }
+
+   #containerWrapper
+    {
+        margin-top: 5%;
+        width: 95%;
+    }
+
+    #upload-text
+    {
+        font-size: 18px !important;
+    }
+
+
+    #instruction1
+    {
+
+        font-size: 0.9rem;
+
+        line-height: 1.5rem;
+
+    }
+
+    #filepondC
+    {
+        width: 90%;
+    }
+
+    #filepondInstruction
+    {
+        width: 90%;
+    }
+
+    #saveBtn
+    {
+        font-size: 0.9rem !important;
+        width: 90%;
+    }
+
+    body
+    {
+        /* padding: 0.5rem; */
+
+        padding: 0;
+    }
+
+    #completionC
+    {
+        width: 100%;
+        height: 400px;
+
+    }
+
+    #uploadError
+    {
+        width: 90% !important;
+        font-size: 0.9rem !important;
+    }
+
+    #top-bar
+    {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+
+        padding: 0 2%;
+    }
+
+    #codacoMark
+    {
+        font-size: 1.2rem;
+    }
+
+
+}
+
+/* mobil/tablet telefon na šířku */
+@media (min-width: 576px) and (max-width: 767px)
+{
+    body
+    {
+        /* background-color: yellow; */
+
+        display: flex;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center;
+
+        padding: 0;
+    }
+
+    #containerWrapper
+    {
+        margin-top: 5%;
+        width: 99%;
+    }
+
+    #upload-text
+    {
+        font-size: 18px !important;
+    }
+
+
+    #instruction1
+    {
+
+        font-size: 0.9rem;
+
+        line-height: 1.5rem;
+
+    }
+
+    #filepondC
+    {
+        width: 70%;
+    }
+
+    #filepondInstruction
+    {
+        width: 70%;
+    }
+
+    #saveBtn
+    {
+        font-size: 0.9rem !important;
+    }
+
+    body
+    {
+        /* padding: 0.5rem; */
+
+        padding: 0;
+    }
+
+    #uploadError
+    {
+        width: 70% !important;
+        font-size: 0.9rem !important;
+    }
+
+    #top-bar
+    {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+        padding: 0 2%;
+    }
+
+    #codacoMark
+    {
+        font-size: 1.2rem;
+    }
+
+}
+
+/* tablet*/
+@media (min-width: 768px) and (max-width: 991px)
+{
+    body
+    {
+        /* background-color: violet; */
+
+        display: flex;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center;
+
+        padding: 0;
+    }
+
+    #containerWrapper
+    {
+        margin-top: 5%;
+        width: 99%;
+    }
+
+    #upload-text
+    {
+        font-size: 20px !important;
+    }
+
+
+    #instruction1
+    {
+        font-size: 0.9rem;
+
+        line-height: 1.5rem;
+    }
+
+    #filepondC
+    {
+        width: 70%;
+    }
+
+    #filepondInstruction
+    {
+        width: 70%;
+    }
+
+    #uploadError
+    {
+        width: 70% !important;
+        font-size: 0.9rem !important;
+    }
+
+    #top-bar
+    {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+
+        padding: 0 2%;
+    }
+
+    #codacoMark
+    {
+        font-size: 1.2rem;
+    }
+}
+
+/* počítačová obrazovka  notebook */
+@media (min-width: 992px) and (max-width: 1199px)
+{
+   body
+   {
+        /* background-color: orange; */
+        display: flex;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center;
+
+        padding: 0;
+   }
+
+   #containerWrapper
+   {
+      margin-top: 5%;
+      width: 90%;
+   }
+
+    #top-bar
+    {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+
+        padding: 0 2%;
+
+    }
+
+    #codacoMark
+    {
+       font-size: 1.2rem;
+    }
+}
+
+/* počítačová obrazovka */
+@media (min-width: 1200px) and (max-width: 1400px)
+{
+   body
+   {
+     /* background-color: pink; */
+
+     display: flex;
+     flex-direction: column !important;
+     justify-content: flex-start !important;
+     align-items: center;
+
+     padding: 0;
+   }
+
+   #containerWrapper
+   {
+        margin-top: 5%;
+        width: 80%;
+   }
+
+   #top-bar
+   {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+
+        padding: 0 2%;
+
+    }
+
+    #codacoMark
+    {
+        font-size: 1.2rem
+    }
+}
+
+/* počítačová obrazovka */
+@media (min-width: 1401px)
+{
+   body
+   {
+       /* background-color: red; */
+       background-color: rgba(247,247,247,1);
+
+       display: flex;
+       flex-direction: column !important;
+       justify-content: flex-start !important;
+       align-items: center;
+
+       padding: 0;
+   }
+
+   #containerWrapper
+   {
+      margin-top: 5%;
+   }
+
+   #top-bar
+   {
+        width: 100%;
+        height: 3rem;
+        min-height: 2rem;
+
+        padding: 0 2%;
+    }
+
+    #codacoMark
+    {
+        font-size: 1.2rem;
+    }
+
 }
